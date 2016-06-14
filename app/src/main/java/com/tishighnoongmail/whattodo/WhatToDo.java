@@ -10,4 +10,5 @@ public class WhatToDo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_what_to_do);
     }
+
 }
