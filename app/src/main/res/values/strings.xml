@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WhatToDo</string>
+    <string name="title_activity_add_to_do">AddToDo</string>
+    <string name="action_settings">Settings</string>
 </resources>
