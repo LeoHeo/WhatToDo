@@ -12,13 +12,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What to do..."
-        android:id="@+id/addbtn"
+        android:text="What To Do..."
+        android:id="@+id/btn"
         android:layout_alignParentBottom="true"
         android:clickable="true"
         android:enabled="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="addbtn_click"
@@ -27,11 +25,22 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/todolist"
+        android:id="@+id/listdo"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/addbtn"
+        android:layout_above="@+id/btn"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newdo"
+        android:layout_below="@+id/listdo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/btn"
+        android:layout_toStartOf="@+id/btn"
+        android:hint="add to do list..."/>
 </RelativeLayout>
