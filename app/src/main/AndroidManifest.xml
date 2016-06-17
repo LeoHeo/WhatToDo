@@ -15,14 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".AddToDo"
-            android:label="@string/title_activity_add_to_do"
-            android:parentActivityName=".WhatToDo"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.tishighnoongmail.whattodo.WhatToDo" />
+        <activity android:name=".EditToDo"
+            android:label="EditToDo"
+            android:parentActivityName=".WhatToDo" >
+
         </activity>
     </application>
 
