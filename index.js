@@ -7,7 +7,7 @@ app.get('/notes', function(req, res) {
 })
 
 app.get('/', function(req, res) {
-  res.json({notes: "This is your notebook. Edit this to start saving your notes!"})
+  res.send("Welcome to the WhatToDo API server! How did you find me??? ;)")
 })
 
 //for heroku
