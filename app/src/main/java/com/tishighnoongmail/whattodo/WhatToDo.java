@@ -5,6 +5,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,10 @@ public class WhatToDo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_what_to_do);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); //define toolbar id
+        setSupportActionBar(toolbar); //add toolbar to app
+
+
         lvtodo = (ListView) findViewById(R.id.listdo);
         dolist = new ArrayList<String>();
         readList();
@@ -43,14 +48,37 @@ public class WhatToDo extends AppCompatActivity {
         deleteonlongclk();
         Entertodoinfo();
     }
+//put menu items into app
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.todo_home_menu, menu);
+    return true;
+}
+//handle click in the action bar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(this, EditToDo.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     //item adder method
-    public void addbtn_click(View v) {
-        EditText newdo = (EditText) findViewById(R.id.newdo);
-        String itemText = newdo.getText().toString();
-        listadp.add(itemText);
-        newdo.setText("");
-        writeList();    }
+//    public void addbtn_click(View v) {
+//        EditText newdo = (EditText) findViewById(R.id.newdo);
+//        String itemText = newdo.getText().toString();
+//        listadp.add(itemText);
+//        newdo.setText("");
+//        writeList();    }
 
 //item editer
     public void Entertodoinfo() {

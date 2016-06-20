@@ -1,19 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.tishighnoongmail.whattodo.AddToDo">
+    tools:context="com.tishighnoongmail.whattodo.EditToDo">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/cancel"
+        android:icon="@drawable/cancel"
+        android:title="@string/action_cancel"
+        app:showAsAction="ifRoom" />
 
-    //item to add new task to list
     <item
-        android:id="@+id/addnewdo"
-
-        android:title="New"
+        android:id="@+id/save"
+        android:title="@string/action_save"
+        android:icon="@drawable/save"
         app:showAsAction="ifRoom"/>
-    //android:icon=  plus />
+
 
 </menu>
