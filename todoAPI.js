@@ -14,3 +14,10 @@ app.get('/', function(req, res) {
 app.listen(3000, function(){
   console.log('listening on *:3000\nvisit http://localhost:3000/notes for test GET');
 });
+
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}).listen(8080, 'localhost');
+console.log('Server running at http://localhost:8080/');
