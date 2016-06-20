@@ -4,25 +4,9 @@
   "description": "API for Android WhatToDo App",
   "main": "index.js",
   "dependencies": {       
-    "express" : "~4.0.0"       
+    "express" : "4.10.2"       
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SydBal/WhatToDo.git"
-  },
-  "keywords": [
-    "node",
-    "api",
-    "whattodo"
-  ],
-  "author": "Dominic Balassone and Robert Charkowicz",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SydBal/WhatToDo/issues"
-  },
-  "homepage": "https://github.com/SydBal/WhatToDo#readme"
+  }
 }
