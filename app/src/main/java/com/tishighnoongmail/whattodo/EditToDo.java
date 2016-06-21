@@ -24,11 +24,12 @@ import java.util.ArrayList;
 
 public class EditToDo extends AppCompatActivity {
     int code = 1;
-    Intent data = getIntent();
+    Intent data =  new Intent();
     EditText doname;
     EditText dodetails;
     Spinner priomenu;
     Spinner statusmenu;
+
     //ArrayList<NameValuePair> dodata = new ArrayList<NameValuePair>(); // array of what to do id =
     ArrayList<String> dodata = new ArrayList<>();
     ArrayAdapter<String> listadp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dodata); //
@@ -40,6 +41,7 @@ public class EditToDo extends AppCompatActivity {
         setContentView(R.layout.activity_edit_to_do);
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.editbar);
         setSupportActionBar(toolbar);
+
 
 
     }

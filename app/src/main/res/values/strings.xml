@@ -7,6 +7,12 @@
     <string name="action_save">Save</string>
     <string name="data_taskname">Task Name</string>
 
+    <string-array name="todo_list">
+        <item>Created</item>
+        <item>Newer</item>
+    </string-array>
+
+
     <string-array name="todo_priority">
         <item>High</item>
         <item>Medium</item>
@@ -18,4 +24,8 @@
         <item>To Do</item>
         <item>Done</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="List_fragment">Hello blank fragment</string>
+
 </resources>

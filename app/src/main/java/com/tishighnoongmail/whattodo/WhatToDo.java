@@ -19,16 +19,18 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
 public class WhatToDo extends AppCompatActivity {
     public final static int code = 1; //new code
     public final static int cade = 2; //edit code
-    ArrayList<String> dolist; // array of what to do id =
+    //String[] todo_list, todo_info;
+    ArrayList<String> dolist;
     ArrayAdapter<String> listadp; //
     ListView lvtodo; //list view variable id=listdo
-
+   //Array datas; // array of data passed back
 
     //make a list of items to view in list viewer
     @Override
@@ -37,8 +39,14 @@ public class WhatToDo extends AppCompatActivity {
         setContentView(R.layout.activity_what_to_do);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); //define toolbar id
         setSupportActionBar(toolbar); //add toolbar to app
+
+
+
+
+
+
         lvtodo = (ListView) findViewById(R.id.listdo);
-        dolist = new ArrayList<String>();//makes list the intentthing
+
         readList();
         listadp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dolist);
         lvtodo.setAdapter(listadp); //hook array to the list view
