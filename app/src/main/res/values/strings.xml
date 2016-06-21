@@ -6,4 +6,16 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_save">Save</string>
     <string name="data_taskname">Task Name</string>
+
+    <string-array name="todo_priority">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
+
+    <string-array name="todo_status">
+        <item>In Progress</item>
+        <item>To Do</item>
+        <item>Done</item>
+    </string-array>
 </resources>

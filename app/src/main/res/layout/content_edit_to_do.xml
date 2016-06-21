@@ -12,27 +12,42 @@
     tools:context="com.tishighnoongmail.whattodo.EditToDo"
     tools:showIn="@layout/activity_edit_to_do">
 
-
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/data_taskname"
-        android:id="@+id/textView"
+        android:hint="Task Name"
+        android:id="@+id/editname"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/editname"
-        android:layout_toStartOf="@+id/editname" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
-        android:ems="10"
-        android:hint="Task Name"
-        android:id="@+id/editname"
-        android:layout_below="@+id/textView"
+        android:hint="Add details here..."
+        android:id="@+id/editdetails"
+        android:layout_below="@+id/editname"
+        android:layout_alignRight="@+id/editname"
+        android:layout_alignEnd="@+id/editname"
+        android:layout_marginTop="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/priomenu"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="162dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dropdown" />
+
 
     <!--<View-->
         <!--android:layout_width="fill_parent"-->
@@ -43,33 +58,8 @@
         <!--android:layout_alignParentRight="true"-->
         <!--android:layout_alignParentEnd="true" />-->
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Task Details"-->
-        <!--android:id="@+id/textView2"-->
-        <!--android:layout_alignBaseline="@+id/editdetails"-->
-        <!--android:layout_alignBottom="@+id/editdetails"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true" />-->
 
-    <!--<EditText-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:inputType="textMultiLine"-->
-        <!--android:hint="Add details here."-->
-        <!--android:ems="10"-->
-        <!--android:id="@+id/editdetails"-->
-        <!--android:layout_below="@+id/view"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_alignParentEnd="true" />-->
-    <!--<View-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:background="#c0c0c0"-->
-        <!--android:id="@+id/view2"-->
-        <!--android:layout_below="@+id/editdetails"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_alignParentEnd="true" />-->
+
+
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -22,9 +23,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class EditToDo extends AppCompatActivity {
-    Intent intent = getIntent();
-    ArrayList<String> dolist; // array of what to do id =
-    ArrayAdapter<String> listadp; //
+    int code = 1;
+    Intent data = getIntent();
+    EditText doname;
+    EditText dodetails;
+    Spinner priomenu;
+    Spinner statusmenu;
+    //ArrayList<NameValuePair> dodata = new ArrayList<NameValuePair>(); // array of what to do id =
+    ArrayList<String> dodata = new ArrayList<>();
+    ArrayAdapter<String> listadp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dodata); //
 
 
     @Override
@@ -35,12 +42,33 @@ public class EditToDo extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
-
-        String name = getIntent().getStringExtra("Task Name");
-        EditText todoname = (EditText)findViewById(R.id.editname);
-        todoname.setText(name); //propagate edit field, need to focus end of string
     }
+    public void  onActivityResult(int requestCode, int code, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == code) {
+            // Make sure the request was successful
+            if (code == RESULT_OK) {
+                // Do something
+                String name = getIntent().getStringExtra("Task Name");//propagate field from intent extra
+                EditText todoname = (EditText) findViewById(R.id.editname);
+                todoname.setText(name);
+                //set other stuff
+            }
+        }
+
+    }
+//    Bundle newtodo = new Bundle();
+//    doname = (EditText) findViewById(R.id.editname);
+//    dodetails  = (EditText) findViewById(R.id.editdetails);
+//    //doprio = (EditText) findViewById(R.id.editprio);
+//    //dostatus = (EditText) findViewById(R.id.editstatus);
+//            dodata.add(new BasicNameValuePair("do_name", doname.getText().toString()));
+//            dodata.add(new BasicNameValuePair("do_details", dodetails.getText().toString()));
+//            dodata.add(new BasicNameValuePair("do_priority", doprio.getText().toString()));
+//            dodata.add(new BasicNameValuePair("do_status", dostatus.getText().toString()));
+//    Intent updatehome = new Intent(this, WhatToDo.class);
+//    updatehome.putExtra("todo data", dodata);
+//    startActivity(updatehome);
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,28 +81,33 @@ public class EditToDo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
+        //cancel
         if (id == R.id.cancel) {
-            startActivity(new Intent(this, WhatToDo.class));
             this.finish();
             return true;
         }
+        //save
         if (id == R.id.save) {
-            startActivity(new Intent(this, WhatToDo.class));
+            doname = (EditText) findViewById(R.id.editname);
+            //dodata.add(doname.getText().toString());
+            //dodata.add(dodetails.getText().toString());
+            //dodata.add(doprio.getText().toString());
+            //dodata.add(dostatus.getText().toString());
+            data.putExtra("Name", doname.getText().toString());
+            setResult(RESULT_OK, data);
             this.finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-//item adder method
+//  item adder method
 //    public void savetodo(View v) {
 //        EditText newname = (EditText) findViewById(R.id.editname);
 //        String name = newname.getText().toString();
-//        EditText newdetails = (EditText) findViewById(R.id.editdetails);
-//        String details = newdetails.getText().toString();
+//        //EditText newdetails = (EditText) findViewById(R.id.editdetails);
+//       // String details = newdetails.getText().toString();
 //        listadp.add(name);
-//        newdo.setText("");
+//        doname.setText("");
 //        writeList();    }
 
 
@@ -84,7 +117,7 @@ public class EditToDo extends AppCompatActivity {
         File filesDir = getFilesDir();
         File todofile = new File(filesDir, "WhatToDo.txt");
         try {
-            dolist = new ArrayList<String>(FileUtils.readLines(todofile));
+            dodata = new ArrayList<String>(FileUtils.readLines(todofile));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,7 +127,7 @@ public class EditToDo extends AppCompatActivity {
         File filesDir = getFilesDir();
         File todofile = new File(filesDir, "WhatToDo.txt");
         try {
-            FileUtils.writeLines(todofile, dolist);
+            FileUtils.writeLines(todofile, dodata);
         } catch (IOException e) {
             e.printStackTrace();
         }

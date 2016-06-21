@@ -23,7 +23,8 @@ import java.util.ArrayList;
 
 
 public class WhatToDo extends AppCompatActivity {
-    public final static String EXTRA_MESSAGE = "com.tishighnoon.whattodo.MESSAGE";
+    public final static int code = 1; //new code
+    public final static int cade = 2; //edit code
     ArrayList<String> dolist; // array of what to do id =
     ArrayAdapter<String> listadp; //
     ListView lvtodo; //list view variable id=listdo
@@ -36,17 +37,15 @@ public class WhatToDo extends AppCompatActivity {
         setContentView(R.layout.activity_what_to_do);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); //define toolbar id
         setSupportActionBar(toolbar); //add toolbar to app
-
-
         lvtodo = (ListView) findViewById(R.id.listdo);
-        dolist = new ArrayList<String>();
+        dolist = new ArrayList<String>();//makes list the intentthing
         readList();
         listadp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dolist);
         lvtodo.setAdapter(listadp); //hook array to the list view
-        //dolist.add("first one");  //Test adding item 1
-        //dolist.add("second one"); //test item2
+        dolist.add("first one");  //Test adding item 1
+        dolist.add("second one"); //test item2
         deleteonlongclk();
-        Entertodoinfo();
+        Enterinfo();
     }
 //put menu items into app
 @Override
@@ -63,13 +62,23 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this, EditToDo.class));
+            startActivityForResult(new Intent(WhatToDo.this, EditToDo.class), 0);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // REQUEST_CODE is defined above
+        if (resultCode == RESULT_OK && requestCode == code) {
+            // Extract name value from result extras
+            String name = data.getExtras().getString("name");
+            dolist.add(name);
+            listadp.notifyDataSetChanged(); //refresh list view
+            writeList();
+        }
+    }
 
 
     //item adder method
@@ -81,7 +90,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 //        writeList();    }
 
 //item editer
-    public void Entertodoinfo() {
+    public void Enterinfo() {
         lvtodo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -92,7 +101,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 //                edittodo.putExtra();
 //                edittodo.putExtra();
 //                edittodo.putExtra();
-                startActivity(edittodo); // brings up the second activity
+                startActivityForResult(edittodo, code); // brings up the second activity
             }
         });
     }
