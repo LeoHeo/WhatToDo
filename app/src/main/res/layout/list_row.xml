@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="FFF9F9F9"
     android:paddingBottom="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp">
@@ -12,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="To Do Name"
-        android:id="@+id/listitemnotename"
+        android:id="@+id/listtodoname"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:ellipsize="end"
@@ -22,19 +21,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tell me something about what we are going to do"
-        android:src="@string-array/todo_priority"
+        android:text="@string-array/todo_priority"
         android:id="@+id/listitemprio"
-        android:layout_toRightOf="@+id/listitemnotename"
         android:layout_alignParentRight="true"
         android:ellipsize="end"
         android:singleLine="true" />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="tell me something about what we are going to do"
-        android:id="@+id/listitemnotebody"
-        android:layout_below="@+id/listitemnotename"
+        android:id="@+id/listtododetail"
+        android:layout_below="@+id/listtodoname"
         android:layout_alignParentLeft="true"
         android:ellipsize="end"
         android:singleLine="true" />

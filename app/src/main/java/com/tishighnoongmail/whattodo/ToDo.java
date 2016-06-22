@@ -31,7 +31,7 @@ public class ToDo {
         this.dateCreatedMilli = dateCreatedMilli;
     }
     public String getTitle(){return title;}
-    public String getMessage(){return title;}
+    public String getDetails(){return title;}
     public Priority getPriority(){return priority;}
     public Status getStatus(){return status;}
     public long getDate(){return dateCreatedMilli;}
@@ -55,4 +55,17 @@ public class ToDo {
         return "Priority";
 
     }
+    public String getstringfromstatus(){
+        return statuspicker(status);
+    }
+    public static String statuspicker(Status noteStatus){
+        switch(noteStatus){
+            case Underway:
+                return "Underway";
+            case ToDo:
+                return "To do";
+            case Done:
+                return "Done";
+        }
+        return "Status";
 }

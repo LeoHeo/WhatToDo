@@ -24,13 +24,18 @@ import java.util.ArrayList;
 
 
 public class WhatToDo extends AppCompatActivity {
-    public final static int code = 1; //new code
-    public final static int cade = 2; //edit code
-    //String[] todo_list, todo_info;
-    ArrayList<String> dolist;
-    ArrayAdapter<String> listadp; //
-    ListView lvtodo; //list view variable id=listdo
-   //Array datas; // array of data passed back
+//    public final static int code = 1; //new code
+//    public final static int cade = 2; //edit code
+//    String[] todo_list, todo_info;
+//    ArrayList<String> dolist;
+//    ArrayAdapter<String> listadp; //
+//    ListView lvtodo; //list view variable id=listdo
+//   Array datas; // array of data passed back
+    public static final String TODO_ID_EXTRA = "com.tishighnoon.whattodo.WhatToDo Todo Identifier";
+    public static final String TODO_TITLE_EXTRA = "com.tishighnoon.whattodo.WhatToDo Todo Title";
+    public static final String TODO_DETAIL_EXTRA = "com.tishighnoon.whattodo.WhatToDo Todo Details";
+    public static final String TODO_PRIO_EXTRA = "com.tishighnoon.whattodo.WhatToDo Todo Priority";
+    public static final String TODO_STATUS_EXTRA = "com.tishighnoon.whattodo.WhatToDo Todo Status";
 
     //make a list of items to view in list viewer
     @Override
