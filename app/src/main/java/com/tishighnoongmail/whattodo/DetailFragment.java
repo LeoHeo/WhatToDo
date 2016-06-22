@@ -29,14 +29,41 @@ public class DetailFragment extends Fragment {
 
 
         View fragmentlayout = inflater.inflate(R.layout.fragment_detail,container, false);
+        //set fields
         TextView title = (TextView) fragmentlayout.findViewById(R.id.viewtodoname);
         TextView details = (TextView) fragmentlayout.findViewById(R.id.viewtododetails);
-        TextView priority = (Spinner) fragmentlayout.findViewById(R.id.priospinner);
-        TextView status = (Spinner) fragmentlayout.findViewById(R.id.statusspinner);
+
+        //need to make custom spinner adapter to replace the purple one preset and
+// save the state i think, in a new java file
+        Spinner prio = (Spinner) fragmentlayout.findViewById(R.id.priospinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.todo_priority, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        prio.setAdapter(adapter);
+
+
+        Spinner status = (Spinner) fragmentlayout.findViewById(R.id.statusspinner);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
+                this, R.array.todo_status, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        status.setAdapter(adapter2);
         Intent intent = getActivity().getIntent();
 
+        //get intents
         title.setText(intent.getExtras().getString(WhatToDo.TODO_TITLE_EXTRA));
-        details.setText(intent.getExtras().getString(WhatToDo.TODO_DETAIL_EXTRA)
+        details.setText(intent.getExtras().getString(WhatToDo.TODO_DETAIL_EXTRA);
+//need to make custom spinner adapter to replace the purple one preset above and
+// save the state i think, in a new java file
+        ToDo.Priority priority = (ToDo.Priority) intent.getSerializableExtra(WhatToDo.TODO_PRIO_EXTRA);
+
+        ToDo.Status status1 = (ToDo.Status)intent.getSerializableExtra(WhatToDo.TODO_STATUS_EXTRA);
+
+
+
+
+
+        // Inflate the layout for this fragment
+        return fragmentlayout;
 
         Spinner priospinner = (Spinner) findViewById(R.id.priospinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -49,11 +76,6 @@ public class DetailFragment extends Fragment {
                 this, R.array.todo_status, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statusspinner.setAdapter(adapter);
-
-        todoid.setText(intent.getExtras().getString(WhatToDo.TODO_ID_EXTRA));
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false);
-
 
 //        Could be used for the getting drop down text for detail file??
 //        .setText(items[position]);??
