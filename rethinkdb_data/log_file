@@ -1,0 +1,17 @@
+2016-06-23T22:31:03.954412380 0.321168s notice: Recursively removing directory /home/dxm/AndroidStudioProjects/WhatToDo/rethinkdb_data/tmp
+2016-06-23T22:31:03.983500892 0.350255s notice: Initializing directory /home/dxm/AndroidStudioProjects/WhatToDo/rethinkdb_data
+2016-06-23T22:31:03.983638054 0.350392s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/dxm/AndroidStudioProjects/WhatToDo/rethinkdb_data' did not already exist or is empty.)
+2016-06-23T22:31:03.983698505 0.350452s notice: Running rethinkdb 2.3.4 (GCC 5.3.1)...
+2016-06-23T22:31:03.989650946 0.356411s notice: Running on Linux 4.4.0-24-generic x86_64
+2016-06-23T22:31:03.989754701 0.356508s notice: Loading data from directory /home/dxm/AndroidStudioProjects/WhatToDo/rethinkdb_data
+2016-06-23T22:31:04.294665678 0.661420s info: Automatically using cache size of 508 MB
+2016-06-23T22:31:04.324789494 0.691543s notice: Listening for intracluster connections on port 29015
+2016-06-23T22:31:04.326637310 0.693391s notice: Listening for client driver connections on port 28015
+2016-06-23T22:31:04.326781007 0.693535s notice: Listening for administrative HTTP connections on port 8080
+2016-06-23T22:31:04.354989052 0.721743s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, 192.168.2.99, ::1, fe80::edc4:22cc:e9ec:49b6%3
+2016-06-23T22:31:04.394767565 0.761522s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, 192.168.2.99, ::1, fe80::edc4:22cc:e9ec:49b6%3
+2016-06-23T22:31:04.426860699 0.793615s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, 192.168.2.99, ::1, fe80::edc4:22cc:e9ec:49b6%3
+2016-06-23T22:31:04.426885675 0.793639s notice: Server ready, "anycoloryoulike_hrj" 55e03f76-2ba7-4b62-891f-cadb002aecdb
+2016-06-23T22:33:49.095003641 165.461758s info: Table 86f28c89-8662-4664-8ed8-73ce21ef8bcd: Starting a new Raft election for term 1.
+2016-06-23T22:33:49.095499352 165.462253s info: Table 86f28c89-8662-4664-8ed8-73ce21ef8bcd: Added replica on this server.
+2016-06-23T22:33:49.136571565 165.503326s info: Table 86f28c89-8662-4664-8ed8-73ce21ef8bcd: This server is Raft leader for term 1. Latest log index is 0.

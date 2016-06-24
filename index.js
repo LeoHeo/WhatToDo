@@ -1,42 +1,124 @@
-var express = require('express');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var helmet = require('helmet');
-var users = require('./routes/users');
-var login = require('./routes/login');
-var router = express.Router();
-require('dotenv').load();
+var express = require('express'),
+    path = require('path'),
+    app = express(),
+    router = express.Router(),
+    r = require('rethinkdb')
+require('rethinkdb-init')(r);
 
-var app = express();
-app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cors());
-app.use(helmet());
-app.use('/users', users);
-app.use('/login', login);
+app.use(router);
 
- 
-app.get('/notes', function(req, res) {
-  res.json({notes: "This is your notebook. Edit this to start saving your notes!", hello:{world:"hi",um:"ya"}})
+//Rethink Configs
+var dbConfig = {
+    host: '127.0.0.1',
+    port: 28015,
+    db: 'whattodo',
+    tables: {
+  		todos: "todos"
+    }
+};
+
+//Grab a RethinkDB connection
+var conn;
+r.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection) {
+	conn = connection;
+});
+
+//Initialize a single database and table to a locally hosted RethinkDB server
+r.init({
+	    host: 'localhost',
+	    port: 28015,
+	    db: 'whattodo'
+    },[
+	    'todos'
+    ]
+).then(function (conn) {
+  // All tables and indexes have been created 
+});
+
+//"homepage", aka all notes ;)
+router.get('/', function(req, res) {	
+	r.db(dbConfig.db).table(dbConfig.tables.todos)
+     .run(conn).then(function(cursor) {
+	    return cursor.toArray()
+	}).then(function(results) {
+	    // process the results
+	    res.send(results)
+	    console.log(results.length)
+	});
+	console.log("Someone hit /")
+}); 
+
+//GET DEVICE'S NOTES
+router.get('/viewtodo/:usr', function(req, res) {
+    var usr = req.params.usr;	
+	r.db(dbConfig.db).table(dbConfig.tables.todos).filter({device:usr})
+     .run(conn).then(function(cursor) {	
+	    return cursor.toArray()	
+	}).then(function(results) {	
+	    // process the results
+	    res.send(results)
+	});
+	console.log("Someone hit /viewtodo/"+usr);
+});
+
+//ADD NEW NOTE
+router.get('/addtodo/:hash/:usr/:con/:dtl/:prio', function(req, res) {
+    var todo = req.params.hash,
+    	usr = req.params.usr,
+    	con = req.params.con,
+    	dtl = req.params.dtl,
+    	prio = req.params.prio;
+	r.db(dbConfig.db).table(dbConfig.tables.todos).insert({id:todo,user:usr,createdon:con,details:dtl,priority:prio})
+     .run(conn).then(function(results) {
+	    // process the results
+	    if(results.inserted==1){
+	    	res.send(true)
+	    }else{
+	    	res.send(false)
+	    };
+	});
+	console.log("Someone hit /edittodo/"+todo+"/"+usr+"/"+con+"/"+dtl+"/"+prio)
+});
+
+//EDIT A TODO
+router.get('/edittodo/:hash/:usr/:con/:dtl/:prio', function(req, res) {
+    var todo = req.params.hash,
+    	usr = req.params.usr,
+    	con = req.params.con,
+    	dtl = req.params.dtl,
+    	prio = req.params.prio;
+	r.db(dbConfig.db).table(dbConfig.tables.todos).get(todo).replace({id:todo,user:usr,createdon:con,details:dtl,priority:prio})
+     .run(conn).then(function(results) {
+	    // process the results
+	    if(results.replaced==1){
+	    	res.send(true)
+	    }else{
+	    	res.send(false)
+	    }
+	});
+	console.log("Someone hit /edittodo/"+todo+"/"+usr+"/"+con+"/"+dtl+"/"+prio)
 })
 
-app.get('/', function(req, res) {
-  res.send("Welcome to the WhatToDo API server! How did you find me??? ;)")
+//DELETE A TODO
+router.get('/deletetodo/:hash', function(req, res) {
+    var todo = req.params.hash;	  	
+	r.db(dbConfig.db).table(dbConfig.tables.todos).get(todo).replace(null)
+     .run(conn).then(function(results) {
+	    // process the results
+	    if(results.deleted==1){
+	    	res.send(true)
+	    }else{
+	    	res.send(false)
+	    };
+	console.log("Someone hit /deletetodo/"+todo)
+	});
 })
+
 
 //for heroku
 var port = process.env.PORT || 3000;
  
-app.use(function (error, request, response, next) {
-    response.status(error.status || 500);
-    response.json({ error: error.message });
-});
-
-var server = app.listen(3000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log('App is listening on http://%s:%s', host, port);
+//Service! 
+app.listen(port, function(){
+    console.log('listening on *:'+port+'\nvisit http://localhost:3000/ to view all table entries in db:whattodo, table:todos');
 });
